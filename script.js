@@ -27,8 +27,7 @@ const getHumanChoice = () => {
     return formattedUserChoice;
 }
 
-let humanScore = 0;
-let computerScore = 0;
+
 
 function playRound(humanChoice, computerChoice) {
     console.log(`You: ${humanChoice}. Computer: ${computerChoice}`)
@@ -72,7 +71,10 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-    for (i=0;i<5;i++) {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    while (humanScore - computerScore < 3 || computerScore - humanScore < 3 || humanScore < 5 || computerScore < 5) {
         const humanChoice = getHumanChoice();
         const computerChoice = getComputerChoice();
         playRound(humanChoice, computerChoice);
@@ -80,9 +82,11 @@ function playGame() {
 
     if (humanScore == computerScore) {
         console.log("It's a draw!!!")
+    } else {
+        console.log(humanScore > computerScore ? "You won the game!" : "You lost the game!")
     }
 
-    console.log(humanScore > computerScore ? "You won the game!" : "You lost the game!")
+    
 }
 
 playGame()
